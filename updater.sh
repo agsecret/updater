@@ -18,14 +18,14 @@ printf "\n##-- Delete DB dump older then 15 days\n"
 find ${bkpdir} -mtime +15 -exec rm {} \;
 
 printf "\n##-- Backup Nextcloud config files\n"
-sudo tar -cpzvf ${bkpdir}nextcloud-config.tar.gz /var/www/nextcloud/config
-sudo chown "$USER:$USER" ~/dump/nextcloud-config.tar.gz
+sudo tar -cpzvf ${bkpdir}nextcloud-config.tar.gz ${ncpath}/config
+sudo chown "$USER:$USER" ${bkpdir}nextcloud-config.tar.gz
 
 printf "\n##-- Chown to allow update\n"
 sudo chown -R ${htuser}:${htgroup} ${ncpath}
 
 printf "\n##-- Update the Nextcloud version\n"
-sudo -u www-data php /var/www/nextcloud/updater/updater.phar --no-interaction
+sudo -u www-data php ${ncpath}/updater/updater.phar --no-interaction
 
 printf "\n##-- chmod to secure Files and Directories\n"
 sudo find ${ncpath}/ -type f -print0 | sudo xargs -0 chmod 0640
