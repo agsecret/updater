@@ -1,12 +1,12 @@
 ## System & Nextcloud Updater
 **Update**
 - Nextcloud 
-- backup Nextcloud config for 15 day
-- version
-- apps, 
-- os packages, 
-- backup DB for 15 days, 
-- renew TLS 
+- Version
+- Apps, 
+- OS packages, 
+- Backup DB (15 days)
+- Backup Nextcloud config (15 days)
+- Renew TLS 
 - Reboot if necessary
 
 ### crontab
