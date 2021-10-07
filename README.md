@@ -1,8 +1,8 @@
 ## System & Nextcloud Updater
 **Update**
 - Nextcloud Version and Apps, 
-- OS packages, 
-- Backup DB, Nextcloud config ( for 15 days)
+- OS packages 
+- Backup DB and Nextcloud config ( for 15 days)
 - Renew TLS 
 - Reboot if necessary
 
