@@ -18,8 +18,8 @@ printf "\n##-- Delete DB dump older then 15 days\n"
 find ${bkpdir} -mtime +15 -exec rm {} \;
 
 printf "\n##-- Backup Nextcloud config files\n"
-sudo tar -cpzvf ${bkpdir}nextcloud-config"$(date +"%Y-%m-%d")".tar.gz ${ncpath}/config
-sudo chown "$USER:$USER" ${bkpdir}nextcloud-config"$(date +"%Y-%m-%d")".tar.gz
+sudo tar -cpzvf ${bkpdir}nextcloud-config_"$(date +"%Y-%m-%d")".tar.gz ${ncpath}/config
+sudo chown "$USER:$USER" ${bkpdir}nextcloud-config_"$(date +"%Y-%m-%d")".tar.gz
 
 printf "\n##-- Chown to allow update\n"
 sudo chown -R ${htuser}:${htgroup} ${ncpath}
