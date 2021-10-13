@@ -56,12 +56,12 @@ fi
 printf "\n##-- Update Nextcloud apps\n"
 sudo -u ${htuser} php ${ncpath}/occ app:update --all
 
-printf "\n##-- Remove unnecessary packages with apt autoremove\n\n"
-DEBIAN_FRONTEND=noninteractive sudo apt-get autoremove
-
 printf "\n##-- Update all OS package with apt\n"
-sudo apt-get update
+DEBIAN_FRONTEND=noninteractive sudo apt-get update
 sudo apt-get -y upgrade
+
+printf "\n##-- Remove unnecessary packages with apt autoremove\n\n"
+sudo apt-get autoremove
 
 printf "\n##-- Renew Let's enscrypt TLS if necessary\n"
 sudo /usr/bin/certbot -q renew
