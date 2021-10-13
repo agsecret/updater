@@ -27,11 +27,11 @@ sudo chown -R ${htuser}:${htgroup} ${ncpath}
 printf "\n##-- Update the Nextcloud version\n"
 sudo -u www-data php ${ncpath}/updater/updater.phar --no-interaction
 
-printf "\n##-- chmod to secure Files and Directories\n"
+printf "\n##-- chown & chmod to secure Files and Directories\n"
 sudo find ${ncpath}/ -type f -print0 | sudo xargs -0 chmod 0640
 sudo find ${ncpath}/ -type d -print0 | sudo xargs -0 chmod 0750
 
-printf "\n##-- chown Directories\n"
+##-- chown Directories
 sudo chown -R ${rootuser}:${htgroup} ${ncpath}
 sudo chown -R ${htuser}:${htgroup} ${ncpath}/apps/
 sudo chown -R ${htuser}:${htgroup} ${ncpath}/core/
@@ -41,7 +41,7 @@ sudo chown -R ${htuser}:${htgroup} ${ncpath}/themes/
 sudo chown -R ${htuser}:${htgroup} ${ncpath}/updater/
 sudo chmod +x ${ncpath}/occ
 
-printf "\n##-- Secure .htaccess\n"
+##-- Secure .htaccess
 if [ -f ${ncpath}/.htaccess ]
  then
   sudo chmod 0644 ${ncpath}/.htaccess
@@ -56,7 +56,7 @@ fi
 printf "\n##-- Update Nextcloud apps\n"
 sudo -u ${htuser} php ${ncpath}/occ app:update --all
 
-printf "\n##-- Remove old unnecessary packages with apt autoremove\n\n"
+printf "\n##-- Remove unnecessary packages with apt autoremove\n\n"
 DEBIAN_FRONTEND=noninteractive sudo apt-get autoremove
 
 printf "\n##-- Update all OS package with apt\n"
