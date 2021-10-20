@@ -14,20 +14,20 @@ uptime
 printf "\n##-- Backup Databases\n"
 mysqldump -u root -p${pass} --default-character-set=utf8mb4 nextcloud > ${bkpdir}nextcloud_"$(date +"%Y-%m-%d")".sql
 
-printf "\n##-- Delete DB dump older then 15 days\n"
+##-- Delete DB dump older then 15 days
 find ${bkpdir} -mtime +15 -exec rm {} \;
 
 printf "\n##-- Backup Nextcloud config files\n"
 sudo tar -cpzvf ${bkpdir}nextcloud-config_"$(date +"%Y-%m-%d")".tar.gz ${ncpath}/config
 sudo chown "$USER:$USER" ${bkpdir}nextcloud-config_"$(date +"%Y-%m-%d")".tar.gz
 
-printf "\n##-- Chown to allow update\n"
+printf "\n##-- Allow update\n"
 sudo chown -R ${htuser}:${htgroup} ${ncpath}
 
 printf "\n##-- Update the Nextcloud version\n"
 sudo -u www-data php ${ncpath}/updater/updater.phar --no-interaction
 
-printf "\n##-- chown & chmod to secure Files and Directories\n"
+printf "\n##-- Secure Files and Directories\n"
 sudo find ${ncpath}/ -type f -print0 | sudo xargs -0 chmod 0640
 sudo find ${ncpath}/ -type d -print0 | sudo xargs -0 chmod 0750
 
