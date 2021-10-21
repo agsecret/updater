@@ -61,7 +61,7 @@ DEBIAN_FRONTEND=noninteractive sudo apt-get update
 sudo apt-get -y upgrade
 
 printf "\n##-- Remove unnecessary packages with apt autoremove\n\n"
-sudo apt-get autoremove
+sudo apt-get -y autoremove
 
 printf "\n##-- Renew Let's enscrypt TLS if necessary\n"
 sudo /usr/bin/certbot -q renew
